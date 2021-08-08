@@ -1,0 +1,23 @@
+<div class="home-container">
+  <div class="list-container">
+    <h3>Select a Pokemon:</h3>
+    <ul>
+      <li *ngFor="let p of pokemonList" class="list-item" (click)="getPokemon(p)">
+        {{ p.name }}
+      </li>
+    </ul>
+  </div>
+
+
+
+  <div class="details-container" *ngIf="selectedPokemon">
+    <img class="pokemon-img" [src]="pokemonImg">
+    <div class="pokemon-info">
+      <p>Index: {{ selectedPokemon.id }}</p>
+      <p>Name: {{ selectedPokemon.name }}</p>
+      <p>Type: </p>
+      <p>Height: {{ selectedPokemon.height | number }}</p>
+      <p>Weight: {{ selectedPokemon.weight | number }}</p>
+    </div>
+  </div>
+</div>

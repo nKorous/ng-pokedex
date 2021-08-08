@@ -1,0 +1,41 @@
+:host {
+  .home-container {
+    display: flex;
+
+    .list-container {
+      width: 200px;
+      height: 700px;
+      overflow-y: scroll;
+      border: 2px ridge black;
+      box-shadow: 5px 5px 5px lightgray;
+      padding: 5px;
+
+      .list-item {
+        cursor: pointer;
+        text-transform: capitalize;
+        line-height: 20px;
+
+        &:hover {
+          color: blue;
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .details-container {
+      border: 2px ridge black;
+      box-shadow: 5px 5px 5px lightgray;
+      height: 700px;
+      width: 900px;
+      margin-left: 25px;
+
+      .pokemon-img {
+        height: 200px;
+        width: 200px;
+        margin-top: 5px;
+        margin-left: 5px;
+        border: 1px solid black;
+      }
+    }
+  }
+}
