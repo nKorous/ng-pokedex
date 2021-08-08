@@ -8,16 +8,27 @@
     </ul>
   </div>
 
-
-
   <div class="details-container" *ngIf="selectedPokemon">
     <img class="pokemon-img" [src]="pokemonImg">
     <div class="pokemon-info">
       <p>Index: {{ selectedPokemon.id }}</p>
-      <p>Name: {{ selectedPokemon.name }}</p>
-      <p>Type: </p>
+      <p>Name: {{ selectedPokemon.name | uppercase }}</p>
+      <p>Type:
+        <button [style.background-color]="getColor(selectedPokemon.types[0].type.name)" [style.color]="'white'">{{ selectedPokemon.types[0].type.name }}</button>
+        <span *ngIf="selectedPokemon.types[1]">
+         &nbsp; / &nbsp; <button [style.background-color]="getColor(selectedPokemon.types[1].type.name)" [style.color]="'white'">{{ selectedPokemon.types[1].type.name }}</button>
+        </span>
+      </p>
       <p>Height: {{ selectedPokemon.height | number }}</p>
       <p>Weight: {{ selectedPokemon.weight | number }}</p>
+    </div>
+    <div class="flavor-text">
+      <h3>Appears In: </h3>
+      <ul>
+        <li *ngFor="let text of flavorText">
+          {{ text.version.name | uppercase }} - {{ text.flavor_text}}
+        </li>
+      </ul>
     </div>
   </div>
 </div>

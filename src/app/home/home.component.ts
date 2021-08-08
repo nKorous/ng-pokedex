@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
   pokemonList: any = []
   selectedPokemon: any
   pokemonImg: string = ""
+  flavorText: any = []
 
   constructor(private dataService: DataService) { }
 
@@ -21,7 +22,6 @@ export class HomeComponent implements OnInit {
   getPokemonList() {
     this.dataService.getPokemonList().subscribe(pokemon => {
       this.pokemonList = pokemon.results
-      console.log(this.pokemonList)
     })
   }
 
@@ -31,10 +31,19 @@ export class HomeComponent implements OnInit {
       this.pokemonImg = pokemon.sprites.other['official-artwork'].front_default !== null
         ? pokemon.sprites.other['official-artwork'].front_default
         : pokemon.sprites.front_default
-      console.log('selectedPokemon', this.selectedPokemon)
+      this.getFlavorText(this.selectedPokemon.species.url)
     })
   }
 
+  getColor(pokemon: any) {
+    return `var(--${pokemon}-color)`
+  }
 
-
+  getFlavorText(url: string) {
+    this.dataService.getUrl(url).subscribe((species: any) => {
+      this.flavorText = species.flavor_text_entries.filter((fte: any) => {
+        return fte.language.name === 'en'
+      })
+    })
+  }
 }
